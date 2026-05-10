@@ -135,6 +135,13 @@ h1, h2, h3, h4 {
   font-family: var(--font-serif);
 }
 
+/* Reserve space at the bottom for the fixed BottomTabs nav (64px tall)
+   plus the home-indicator safe area. Used on body/document scroll. */
+.has-bottom-tabs {
+  padding-bottom: 64px;
+  padding-bottom: calc(64px + env(safe-area-inset-bottom));
+}
+
 /* Lined journal area — for reflection/journal textareas */
 .lined-area {
   background-image: repeating-linear-gradient(

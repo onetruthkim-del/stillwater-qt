@@ -62,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-cream text-ink pb-[calc(64px+env(safe-area-inset-bottom))]">
+      <body className="min-h-full flex flex-col bg-cream text-ink has-bottom-tabs">
         {children}
         <BottomTabs />
       </body>
