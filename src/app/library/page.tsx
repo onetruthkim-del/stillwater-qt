@@ -104,7 +104,7 @@ export default function LibraryPage() {
                     type="button"
                     onClick={() => handleDelete(wb.id, wb.weeklyTitle)}
                     aria-label={`Remove ${wb.weeklyTitle}`}
-                    className="absolute top-3 right-3 h-7 w-7 rounded-full text-ink-soft/50 hover:text-red-700 hover:bg-red-50 transition flex items-center justify-center text-lg"
+                    className="absolute top-2 right-2 h-10 w-10 rounded-full text-ink-soft/50 hover:text-red-700 hover:bg-red-50 active:bg-red-100 transition flex items-center justify-center text-2xl leading-none"
                   >
                     &times;
                   </button>

@@ -88,14 +88,16 @@ export default function DailyPage({
   return (
     <main className="flex-1">
       <div className="mx-auto w-full max-w-3xl px-6 py-10 sm:py-14">
-        <nav className="mb-8 flex items-center justify-between text-sm">
+        <nav className="mb-8 flex items-center justify-between gap-3 text-sm">
           <Link
             href={`/workbook/${id}`}
-            className="text-ink-soft hover:text-navy transition"
+            className="text-ink-soft hover:text-navy transition truncate min-w-0"
           >
             ← {workbook.weeklyTitle}
           </Link>
-          <span className="text-ink-soft font-serif">Day {dayNum} of 7</span>
+          <span className="text-ink-soft font-serif shrink-0">
+            Day {dayNum} of 7
+          </span>
         </nav>
 
         <header className="mb-10 border-b border-rule pb-8">

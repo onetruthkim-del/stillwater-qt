@@ -83,14 +83,14 @@ export default function WorkbookPage({
   return (
     <main className="flex-1">
       <div className="mx-auto w-full max-w-5xl px-6 py-10 sm:py-14">
-        <nav className="mb-8 flex items-center justify-between text-sm">
+        <nav className="mb-8 flex items-center justify-between gap-3 text-sm">
           <Link
             href="/library"
-            className="text-ink-soft hover:text-navy transition"
+            className="text-ink-soft hover:text-navy transition shrink-0"
           >
             ← Library
           </Link>
-          <span className="text-ink-soft font-serif">
+          <span className="text-ink-soft font-serif text-right truncate min-w-0">
             Week of{" "}
             {new Date(workbook.generatedAt).toLocaleDateString(undefined, {
               month: "long",
