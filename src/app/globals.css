@@ -65,21 +65,77 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
 }
 
-.prose-devotional p {
-  margin-bottom: 1.1rem;
-  line-height: 1.75;
+/* Devotional body — book-like serif rhythm.
+   Sized for 60-70 char measure with max-w-prose on the parent. */
+.prose-devotional {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.78;
   color: var(--ink-soft);
+}
+
+.prose-devotional p {
+  margin-bottom: 1.25rem;
 }
 
 .prose-devotional p:first-child::first-letter {
   font-family: var(--font-serif);
-  font-size: 3.2rem;
+  font-size: 3.6rem;
   float: left;
-  line-height: 0.9;
-  padding: 0.25rem 0.5rem 0 0;
+  line-height: 0.95;
+  padding: 0.25rem 0.55rem 0 0;
   color: var(--navy-deep);
+  font-weight: 500;
 }
 
+/* Lead paragraph — synopsis treatment.
+   Slightly larger serif italic, looks like a chapter introduction. */
+.prose-lead {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* Eyebrow label — "Synopsis", "Reading Plan", etc.
+   Letterspaced uppercase serif in gold. */
+.eyebrow {
+  font-family: var(--font-serif);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+
+/* Ornamental section divider — three soft dots in gold.
+   Echoes "Stillwater" wave motif while staying neutral. */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 3rem auto;
+  color: var(--gold);
+  opacity: 0.55;
+}
+
+.ornament::before,
+.ornament::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  background: var(--rule);
+}
+
+.ornament > span {
+  font-size: 0.5rem;
+  letter-spacing: 0.4em;
+  font-family: var(--font-serif);
+}
+
+/* Lined journal area — for reflection/journal textareas */
 .lined-area {
   background-image: repeating-linear-gradient(
     to bottom,
@@ -90,6 +146,15 @@ h1, h2, h3, h4 {
   );
   background-size: 100% 1.85rem;
   line-height: 1.85rem;
+}
+
+/* Initial drop on mobile — soften so it doesn't crowd the line.
+   Smaller letter, narrower margin. */
+@media (max-width: 480px) {
+  .prose-devotional p:first-child::first-letter {
+    font-size: 3rem;
+    padding: 0.1rem 0.4rem 0 0;
+  }
 }
 
 /* Standalone PWA polish: hide scrollbars subtly, prevent text-size adjust */

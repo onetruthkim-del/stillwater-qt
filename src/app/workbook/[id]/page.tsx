@@ -99,48 +99,68 @@ export default function WorkbookPage({
           </span>
         </nav>
 
-        <header className="mb-12 text-center border-b border-rule pb-10">
-          <p className="font-serif text-xs uppercase tracking-[0.3em] text-gold mb-3">
-            Personalized
-          </p>
-          <h1 className="font-serif text-4xl sm:text-5xl text-navy-deep mb-4">
+        <header className="mb-14 text-center">
+          <p className="eyebrow mb-4">Personalized · This Week</p>
+          <h1 className="font-serif text-4xl sm:text-5xl text-navy-deep leading-tight tracking-tight mb-5">
             {workbook.weeklyTitle}
           </h1>
-          <p className="text-sm italic text-ink-soft max-w-xl mx-auto">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 80 12"
+            className="mx-auto h-3 w-20 text-gold/60 mb-5"
+          >
+            <path
+              d="M2 6 Q 12 1, 22 6 T 42 6 T 62 6 T 78 6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.4"
+              strokeLinecap="round"
+            />
+          </svg>
+          <p className="text-sm italic text-ink-soft max-w-xl mx-auto leading-relaxed">
             On your concern: &ldquo;{workbook.concern}&rdquo;
           </p>
         </header>
 
         {workbook.pastoralLetter && (
-          <section className="mb-12 rounded-2xl border border-navy/15 bg-navy/[0.04] p-7 sm:p-9">
-            <p className="font-serif text-xs uppercase tracking-[0.3em] text-gold mb-4">
-              A Letter, Before We Begin
-            </p>
-            <div className="font-serif text-navy-deep leading-relaxed text-[1.05rem] whitespace-pre-wrap">
-              {workbook.pastoralLetter}
+          <section className="mb-12 mx-auto max-w-2xl">
+            <div className="rounded-2xl border border-navy/15 bg-navy/[0.04] px-7 py-8 sm:px-10 sm:py-10">
+              <p className="eyebrow text-center mb-6">
+                A Letter, Before We Begin
+              </p>
+              <div className="font-serif text-navy-deep leading-[1.7] text-[1.05rem] whitespace-pre-wrap">
+                {workbook.pastoralLetter}
+              </div>
+              <div className="mt-7 flex items-center gap-3 text-ink-soft/70">
+                <span className="h-px flex-1 bg-navy/15" />
+                <span className="font-serif italic text-xs">
+                  your pastor, for this week
+                </span>
+              </div>
             </div>
-            <p className="mt-5 pt-4 border-t border-navy/15 text-xs text-ink-soft text-right italic">
-              &mdash; your pastor, for this week
-            </p>
           </section>
         )}
 
-        <div className="grid gap-10 lg:grid-cols-[1fr_22rem]">
-          <article className="space-y-10 min-w-0">
+        <div className="ornament" aria-hidden="true">
+          <span>◆</span>
+        </div>
+
+        <div className="grid gap-12 lg:gap-14 lg:grid-cols-[1fr_20rem]">
+          <article className="space-y-12 min-w-0 mx-auto w-full max-w-prose lg:max-w-none">
             <section>
-              <h2 className="font-serif text-2xl text-navy-deep mb-3">
-                Synopsis
-              </h2>
-              <p className="text-ink-soft leading-relaxed">
-                {workbook.synopsis}
-              </p>
+              <p className="eyebrow text-center mb-4">Synopsis</p>
+              <p className="prose-lead text-center">{workbook.synopsis}</p>
             </section>
 
+            <div className="ornament" aria-hidden="true">
+              <span>◆</span>
+            </div>
+
             <section>
-              <h2 className="font-serif text-2xl text-navy-deep mb-4">
+              <p className="eyebrow text-center mb-6">
                 This Week&rsquo;s Teaching
-              </h2>
-              <div className="prose-devotional text-base">
+              </p>
+              <div className="prose-devotional max-w-prose mx-auto">
                 {workbook.devotional.split(/\n{2,}/).map((para, i) => (
                   <p key={i}>{para.trim()}</p>
                 ))}
@@ -150,32 +170,33 @@ export default function WorkbookPage({
 
           <aside className="space-y-8 lg:sticky lg:top-8 lg:self-start">
             <div className="rounded-2xl border border-rule bg-cream-soft p-6 shadow-sm">
-              <p className="font-serif text-xs uppercase tracking-[0.25em] text-gold mb-4 text-center">
-                Reading Plan
+              <p className="eyebrow text-center mb-1">Reading Plan</p>
+              <p className="text-center text-[10px] text-ink-soft/60 uppercase tracking-widest mb-5">
+                Seven days · One passage at a time
               </p>
-              <ol className="space-y-3">
+              <ol className="space-y-2.5">
                 {workbook.readingPlan.map((d) => {
                   const done = progress.daily[d.day]?.completed;
                   return (
                     <li key={d.day}>
                       <Link
                         href={`/workbook/${id}/day/${d.day}`}
-                        className="flex gap-3 group"
+                        className="flex items-center gap-3 group rounded-lg px-2 py-1.5 -mx-2 hover:bg-cream transition"
                       >
                         <span
-                          className={`mt-1 inline-block h-4 w-4 rounded-full border ${
+                          className={`shrink-0 inline-flex items-center justify-center h-7 w-7 rounded-full border font-serif text-xs transition ${
                             done
-                              ? "bg-navy border-navy"
-                              : "border-rule bg-cream"
+                              ? "bg-navy border-navy text-cream"
+                              : "border-rule bg-cream text-ink-soft group-hover:border-navy/40 group-hover:text-navy-deep"
                           }`}
-                        />
+                        >
+                          {d.day}
+                        </span>
                         <div className="min-w-0 flex-1">
-                          <p className="font-serif text-sm text-navy-deep group-hover:text-navy transition">
-                            <span className="font-semibold">Day {d.day}</span>
-                            <span className="mx-2 text-rule">|</span>
+                          <p className="font-serif text-sm text-navy-deep leading-tight">
                             {d.passage}
                           </p>
-                          <p className="text-xs italic text-ink-soft">
+                          <p className="text-[11px] italic text-ink-soft leading-tight mt-0.5">
                             {d.subtitle}
                           </p>
                         </div>
@@ -184,51 +205,88 @@ export default function WorkbookPage({
                   );
                 })}
               </ol>
-              <p className="mt-5 pt-4 border-t border-rule text-xs text-center text-ink-soft">
-                {completedDays} of 7 days complete
-              </p>
+              <div className="mt-5 pt-4 border-t border-rule">
+                <div className="flex items-center justify-between text-xs text-ink-soft">
+                  <span>Progress</span>
+                  <span className="font-serif text-navy-deep">
+                    {completedDays}/7
+                  </span>
+                </div>
+                <div className="mt-2 h-1 rounded-full bg-rule overflow-hidden">
+                  <div
+                    className="h-full bg-navy transition-all duration-500"
+                    style={{ width: `${(completedDays / 7) * 100}%` }}
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="rounded-2xl bg-navy p-6 text-cream shadow-sm">
-              <p className="font-serif text-xs uppercase tracking-[0.25em] text-gold mb-3 text-center">
+            <div className="rounded-2xl bg-navy p-7 text-cream shadow-sm relative overflow-hidden">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 80 12"
+                className="absolute top-5 left-1/2 -translate-x-1/2 h-3 w-16 text-gold/70"
+              >
+                <path
+                  d="M2 6 Q 12 1, 22 6 T 42 6 T 62 6 T 78 6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <p className="eyebrow text-center mt-3 mb-4 text-gold/90">
                 Weekly Blessing
               </p>
-              <p className="font-serif text-base leading-relaxed text-cream/95">
+              <p className="font-serif text-[1.0625rem] leading-[1.7] text-cream/95">
                 {workbook.blessing}
               </p>
             </div>
           </aside>
         </div>
 
-        <section className="mt-16 border-t border-rule pt-12">
+        <div className="ornament mt-16" aria-hidden="true">
+          <span>◆</span>
+        </div>
+
+        <section className="mt-4">
+          <p className="eyebrow text-center mb-3">Reflection</p>
           <h2 className="font-serif text-3xl text-navy-deep text-center mb-10">
-            Reflection
+            Three questions for this week
           </h2>
-          <div className="space-y-10 max-w-3xl mx-auto">
+          <div className="space-y-12 max-w-2xl mx-auto">
             {workbook.reflectionQuestions.map((q, i) => (
               <div key={i}>
-                <p className="font-serif text-base text-navy-deep text-center mb-4 leading-snug">
-                  {q}
-                </p>
+                <div className="flex items-baseline gap-3 mb-4">
+                  <span className="font-serif text-2xl text-gold/70 leading-none shrink-0">
+                    {i + 1}.
+                  </span>
+                  <p className="font-serif text-[1.0625rem] text-navy-deep leading-relaxed">
+                    {q}
+                  </p>
+                </div>
                 <textarea
                   rows={5}
                   value={progress.reflections[i] ?? ""}
                   onChange={(e) => updateReflection(i, e.target.value)}
                   placeholder="Write your reflection here…"
-                  className="w-full bg-transparent lined-area pt-1 text-ink leading-[1.85rem] focus:outline-none resize-none border-0"
+                  className="w-full bg-transparent lined-area pt-1 text-ink leading-[1.85rem] focus:outline-none resize-none border-0 placeholder:text-ink-soft/40"
                 />
               </div>
             ))}
           </div>
         </section>
 
-        <div className="mt-16 text-center">
+        <div className="mt-16 flex flex-col items-center gap-3">
           <Link
             href={`/workbook/${id}/day/1`}
-            className="inline-flex items-center justify-center rounded-xl bg-navy-deep px-8 py-4 text-cream font-medium hover:bg-navy transition"
+            className="inline-flex items-center justify-center rounded-xl bg-navy-deep px-10 py-4 text-cream font-medium hover:bg-navy transition shadow-sm"
           >
             Begin Day 1
           </Link>
+          <p className="text-xs text-ink-soft/60 italic">
+            Take your time. The week will hold.
+          </p>
         </div>
       </div>
     </main>
