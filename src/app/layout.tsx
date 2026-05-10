@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import BottomTabs from "@/components/BottomTabs";
 import "./globals.css";
 
 const SITE_NAME = "Stillwater";
@@ -61,8 +62,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-cream text-ink">
+      <body className="min-h-full flex flex-col bg-cream text-ink pb-[calc(64px+env(safe-area-inset-bottom))]">
         {children}
+        <BottomTabs />
       </body>
     </html>
   );
